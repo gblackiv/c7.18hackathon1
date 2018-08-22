@@ -1,3 +1,6 @@
+
+
+
 function checkWinCondition(positionP, currentplayerP) {
     for (var directionIndex = 0; directionIndex < directionArray.length - 2; directionIndex += 2) {
         currentCounter = 0;
@@ -46,4 +49,3 @@ function checkDrawGame() {
         alert("GAME IS A DRAW");
     }
 }
-
