@@ -23,3 +23,7 @@ function switchPlayer(currentPlayerP){
 	}
 	return currentPlayerP;
 }
+
+function squareClickHandler(){
+	$('.gameBoardContainer').on('click', $('.row > div'), chooseSquare)
+}
