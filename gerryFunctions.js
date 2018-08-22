@@ -9,12 +9,14 @@ function switchPlayer(){
 
 //returns the currentGameBoard, so when called, you must assign to the global variable gameBoard variable
 function startGame(){
-	console.log('start click happened')
+		var cssSize = 100 / boardSize;
+		var cssTextSize = 55 / boardSize ;
 	for( let outter = 0; outter < boardSize; outter++ ){
-		var newRow = $('<div>', {class: 'row', 'row': outter});
+		var newRow = $('<div>', {class: 'row', 'row': outter, css: {'height': cssSize+'%' }});
 		currentGameBoard.push( [] );
+
 		for( let inner = 0; inner < boardSize; inner++ ){
-			var newSquare = $( '<div>', {class: 'square', 'column': inner} );
+			var newSquare = $( '<div>', {class: 'square', 'column': inner , css: {'width': cssSize+'%','font-size': cssTextSize+'vh' }} );
 			newRow.append(newSquare);
 			currentGameBoard[outter].push(newSquare);
 		}
@@ -48,6 +50,6 @@ function createWinConditionMenu(boardSizeP){
 	$('.selectBoardSize').addClass( 'hidden' );
 	startGameClickHandler();
 }
-
-//add the click handler to button to start game
-//hide the boardSizeSpan, reveal winningOptionSpan
+// function handleStatusBar( message ){
+// 	$('')
+// }
