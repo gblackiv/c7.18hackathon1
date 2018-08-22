@@ -8,8 +8,10 @@ function switchPlayer(){
 }
 
 //returns the currentGameBoard, so when called, you must assign to the global variable gameBoard variable
-function startGame(){
-		winCounter = parseInt($('.selectWinningCounter option:selected').val());
+function startGame(notResetGame = true){
+	if(notResetGame){
+		winCounter = (parseInt($('.selectWinningCounter option:selected').val()))-1;
+	}
 		var cssSize = 100 / boardSize;
 		var cssTextSize = 55 / boardSize ;
 	for( let outter = 0; outter < boardSize; outter++ ){
