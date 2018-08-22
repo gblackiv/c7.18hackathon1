@@ -1,14 +1,20 @@
+function chooseSquare(event){
+    var clickedSquare = event.currentTarget;
+    $(clickedSquare).text(currentPlayer)
+    checkWinCondition();
+    switchPlayer();
+}
+
 
 var winCounter = boardSize - 1
 
-
-function checkWinCondition(positionP, currentplayerP) {
+function checkWinCondition(positionP) {
     for (var directionIndex = 0; directionIndex < directionArray.length - 2; directionIndex += 2) {
         currentCounter = 0;
         checkingInOneDirection(directionIndex, positionP);
         checkingInOneDirection(directionIndex + 1, positionP);
         if (currentCounter === winCounter) {
-            alert(currentplayerP + " won!!!!!");
+            alert(currentPlayer + " won!!!!!");
             return;
         }
     }
