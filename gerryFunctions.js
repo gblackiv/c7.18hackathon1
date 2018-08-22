@@ -1,3 +1,4 @@
+
 //returns the currentGameBoard, so when called, you must assign to the global variable gameBoard variable
 function startGame(boardSizeP, currentGameBoardP){
 	for( let itterations = 0; itterations < boardSizeP; itterations++ ){
@@ -8,4 +9,14 @@ function startGame(boardSizeP, currentGameBoardP){
 		}
 	}
 	return currentGameBoardP;
+}
+
+function switchPlayer(currentPlayerP){
+	if( currentPlayerP === player1 ){
+		currentPlayerP = player2;
+	}
+	else{
+		currentPlayerP = player1;
+	}
+	return currentPlayerP;
 }
