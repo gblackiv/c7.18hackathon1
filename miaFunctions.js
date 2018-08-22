@@ -8,10 +8,10 @@ var currentGameBoard = [];
 var firstClick = null;
 
 function firstSubmitClickHandler() {
-    $('.gameBoardContainer').on( 'click', '.submitButton', recordfFirstSubmitClick );
+    $('.gameBoardContainer').on( 'click', '.submitButton', recordFirstSubmitClick );
 }
 
-function recordfFirstSubmitClick() {
+function recordFirstSubmitClick() {
 boardSize = $('.selectBoardSize option:selected').val();
 createWinConditionMenu(boardSize);
 }
