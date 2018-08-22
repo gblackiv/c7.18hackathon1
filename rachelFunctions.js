@@ -8,10 +8,8 @@ function chooseSquare(event){
     switchPlayer();
 }
 
-
-var winCounter = 2
-
 function checkWinCondition(positionP) {
+    var winCounter = (boardSize-1);
     for (var directionIndex = 0; directionIndex < directionArray.length - 1; directionIndex += 2) {
         currentCounter = 0;
         checkingInOneDirection(directionIndex, positionP);
