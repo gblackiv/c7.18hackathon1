@@ -76,7 +76,6 @@ body {
     position: relative;
     display:inline;
     text-align: center;
-    color: lightblue;
     font-size: 50%;
   }
   button {
@@ -89,6 +88,10 @@ body {
     height: 10%;
     border-radius: 5px;
     background-color: pink;
+  }
+
+  button:hover{
+      background-color: lightblue;
   }
   
   .statusContainer {
