@@ -8,6 +8,7 @@ function checkWinCondition(positionP, currentplayerP) {
             return;
         }
     }
+    checkDrawGame();
 }
 
 function checkingInOneDirection(indexP, positionP) {
@@ -28,4 +29,18 @@ function checkingInOneDirection(indexP, positionP) {
         return checkingInOneDirection(indexP, newPosition)
     }
     console.log(currentCounter)
+}
+
+
+function checkDrawGame() {
+    var isBoardFull = true;
+    for (var boardIndex = 0; boardIndex < currentGameBoard.length; boardIndex++) {
+        currentGameBoard[boardIndex] = currentGameBoard[boardIndex].filter(num => num);
+        if (currentGameBoard[boardIndex].length !== 3) {
+            isBoardFull = false;
+        }
+    }
+    if (isBoardFull) {
+        alert("GAME IS A DRAW");
+    }
 }
