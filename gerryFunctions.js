@@ -27,5 +27,5 @@ function startGameClickHandler(){
 }
 
 function squareClickHandler(){
-	$('.gameBoardContainer').on('click', $('.row > div'), chooseSquare);
+	$('.square').click(chooseSquare);
 }
