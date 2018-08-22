@@ -12,8 +12,8 @@ function firstSubmitClickHandler() {
 }
 
 function recordFirstSubmitClick() {
-boardSize = $('.selectBoardSize option:selected').val();
-createWinConditionMenu(boardSize);
+boardSize = parseInt( $('.selectBoardSize option:selected').val() );
+createWinConditionMenu( boardSize );
 }
 
 
