@@ -6,10 +6,10 @@ function chooseSquare(event){
     clickedSquare.off("click");
     checkWinCondition([Number(row), Number(column)]);
     switchPlayer();
+    displayStats();
 }
 
 function checkWinCondition(positionP) {
-    var winCounter = (boardSize-1);
     for (var directionIndex = 0; directionIndex < directionArray.length - 1; directionIndex += 2) {
         currentCounter = 0;
         checkingInOneDirection(directionIndex, positionP);

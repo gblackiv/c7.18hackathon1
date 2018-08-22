@@ -17,7 +17,7 @@ function recordFirstSubmitClick() {
 }
 
 function displayStats() {
-$(".statusContainer > div:first-child").text(currentPlayer.name + "goes next.");
+$(".statusContainer > div:first-child").text(currentPlayer.name + " goes next.");
 $("#player1Wins").text(player1.victories);
 $("#player2Wins").text(player2.victories);
 $("#draws").text(drawVictories);
@@ -30,9 +30,6 @@ function resetGame() {
     currentGameBoard = [];
     //call startGame() to create the square
     startGame();
-    //set player
-    switchPlayer();
     //clear statusDisplayArea
-    var message = currentPlayer.name + "'s turn."
-    handleStatusBar(message);
+	displayStats();
 }
