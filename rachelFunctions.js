@@ -15,7 +15,7 @@ function checkWinCondition(positionP) {
         checkingInOneDirection(directionIndex, positionP);
         checkingInOneDirection(directionIndex + 1, positionP);
         if (currentCounter === winCounter) {
-            showWinScreen();
+            showResultScreen(false);
             return;
         }
     }
@@ -53,15 +53,20 @@ function checkDrawGame() {
         }
     }
     if (isBoardFull) {
-        alert("GAME IS A DRAW");
+        showResultScreen(true);
     }
 }
 
 
-function showWinScreen(){
+function showResultScreen(isItADraw = false){
     $('.gameBoardContainer').empty();
-    $('.gameBoardContainer').append("<h2>"+currentPlayer.name + " has won!</h2>");
-    currentPlayer.victories++
+    if (isItADraw){
+        var message = $('<h2>', {'text': 'Game is a draw!'});
+    } else {
+        var message = $('<h2>', {'text': currentPlayer.name + " has won!"});
+        currentPlayer.victories++
+    }
+    $('.gameBoardContainer').append(message);
     var resetButton = $('<button>', {class: 'resetButton', 'text': 'Play Again'});
     $('.gameBoardContainer').append(resetButton);
     $('.resetButton').click(resetGame)
