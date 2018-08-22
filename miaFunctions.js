@@ -18,6 +18,7 @@ function recordFirstSubmitClick() {
 }
 
 function resetGame() {
+    $('.gameBoardContainer').empty();
     //do not clear boardSize for the moment because we want to keep the selection of boardSize the same
     currentGameBoard = [];
     //call startGame() to create the square
