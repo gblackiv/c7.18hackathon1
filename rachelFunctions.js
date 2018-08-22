@@ -1,4 +1,5 @@
 
+var winCounter = boardSize - 1
 
 
 function checkWinCondition(positionP, currentplayerP) {
