@@ -24,6 +24,7 @@ function startGame(boardSizeP, currentGameBoardP){
 
 function startGameClickHandler(){
 	$('body').on( 'click', '.submitButton', startGame.bind( boardSize, currentGameBoard ) );
+	
 }
 
 function squareClickHandler(){
