@@ -1,3 +1,6 @@
+function switchPlayer(){
+	if( currentPlayer === player1 ){
+		currentPlayer = player2;
 
 //returns the currentGameBoard, so when called, you must assign to the global variable gameBoard variable
 function startGame(boardSizeP, currentGameBoardP){
@@ -19,10 +22,10 @@ function switchPlayer(currentPlayerP){
 		currentPlayerP = player2;
 	}
 	else{
-		currentPlayerP = player1;
+		currentPlayer = player1;
 	}
-	return currentPlayerP;
 }
+    
 function startGameClickHandler(){
 	$('body').on( 'click', '.submitButton', startGame.bind( boardSize, currentGameBoard ) );
 }
