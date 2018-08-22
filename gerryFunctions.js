@@ -20,11 +20,13 @@ function startGame(){
 		}
 		$('.gameBoardContainer').append(newRow);
 	}
+	$('.preGameScreen').addClass('hidden');
+	squareClickHandler();
 }
 
 function startGameClickHandler(){
 	console.log("startGameClickHandler")
-	setTimeout(function(){$('body').on( 'click', '.submitButton', startGame)}, 500 );
+	setTimeout(function(){$('body').on( 'click', '.submitButton', startGame)}, 200 );
 	
 }
 
