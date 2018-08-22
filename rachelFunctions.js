@@ -3,6 +3,7 @@ function chooseSquare(event){
     clickedSquare.text(currentPlayer)
     var column = clickedSquare.attr("column")
     var row = clickedSquare.parent().attr("row")
+    clickedSquare.off("click");
     checkWinCondition([Number(row), Number(column)]);
     switchPlayer();
 }
