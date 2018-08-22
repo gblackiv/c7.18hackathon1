@@ -29,3 +29,7 @@ function switchPlayer(currentPlayerP){
 function startGameClickHandler(){
 	$('body').on( 'click', '.submitButton', startGame.bind( boardSize, currentGameBoard ) );
 }
+
+function squareClickHandler(){
+	$('.gameBoardContainer').on('click', $('.row > div'), chooseSquare)
+}
