@@ -9,6 +9,7 @@ function checkWinCondition(positionP, currentplayerP) {
         }
     }
     checkDrawGame();
+
 }
 
 function checkingInOneDirection(indexP, positionP) {
@@ -32,6 +33,7 @@ function checkingInOneDirection(indexP, positionP) {
 }
 
 
+
 function checkDrawGame() {
     var isBoardFull = true;
     for (var boardIndex = 0; boardIndex < currentGameBoard.length; boardIndex++) {
@@ -44,3 +46,4 @@ function checkDrawGame() {
         alert("GAME IS A DRAW");
     }
 }
+
