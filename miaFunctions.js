@@ -20,7 +20,7 @@ function displayStats() {
 $(".statusContainer > div:first-child").text(currentPlayer.name + "goes next.");
 $("#player1Wins").text(player1.victories);
 $("#player2Wins").text(player2.victories);
-$("#draws").text()
+$("#draws").text(drawVictories);
 }
 
 
@@ -33,6 +33,6 @@ function resetGame() {
     //set player
     switchPlayer();
     //clear statusDisplayArea
-    var message = currentPlayer.name + "'s Turn"
+    var message = currentPlayer.name + "'s turn."
     handleStatusBar(message);
 }
