@@ -29,3 +29,10 @@ function startGameClickHandler(){
 function squareClickHandler(){
 	$('.gameBoardContainer').on('click', $('.row > div'), chooseSquare);
 }
+function createWinConditionMenu(boardSizeP){
+	var selectMenu = $('<select>' {class: });
+	for( let createIndex = 3; createIndex <= boardSizeP; createIndex++)
+}
+
+//add the click handler to button to start game
+//hide the boardSizeSpan, reveal winningOptionSpan
