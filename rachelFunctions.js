@@ -1,6 +1,6 @@
 function chooseSquare(event){
     var clickedSquare = $(event.currentTarget);
-    clickedSquare.text(currentPlayer)
+    clickedSquare.text(currentPlayer.mark)
     var column = clickedSquare.attr("column")
     var row = clickedSquare.parent().attr("row")
     clickedSquare.off("click");
@@ -17,7 +17,7 @@ function checkWinCondition(positionP) {
         checkingInOneDirection(directionIndex, positionP);
         checkingInOneDirection(directionIndex + 1, positionP);
         if (currentCounter === winCounter) {
-            alert(currentPlayer + " won!!!!!");
+            showWinScreen();
             return;
         }
     }
@@ -45,7 +45,6 @@ function checkingInOneDirection(indexP, positionP) {
 }
 
 
-
 function checkDrawGame() {
     var isBoardFull = true;
     for (var boardIndex = 0; boardIndex < currentGameBoard.length; boardIndex++) {
@@ -58,4 +57,14 @@ function checkDrawGame() {
     if (isBoardFull) {
         alert("GAME IS A DRAW");
     }
+}
+
+
+function showWinScreen(){
+    $('.gameBoardContainer').empty();
+    $('.gameBoardContainer').append("<h2>"+currentPlayer.name + " has won!</h2>");
+    currentPlayer.victories++
+    var resetButton = $('<button>', {class: 'resetButton', 'text': 'Play Again'});
+    $('.gameBoardContainer').append(resetButton);
+    $('.resetButton').click(resetGame)
 }
