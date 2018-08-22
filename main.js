@@ -9,7 +9,7 @@ var player2 = {
     victories: 0
 }
 var currentPlayer = player1;
-var draw = 0;
+var drawVictories = 0;
 
 
 var directionArray = [
