@@ -11,10 +11,10 @@ function switchPlayer(){
 function startGame(boardSizeP, currentGameBoardP){
 	console.log('start click happened')
 	for( let outter = 0; outter < boardSizeP; outter++ ){
-		var newRow = $('<div>', {class: 'row'});
+		var newRow = $('<div>', {class: 'row', 'row': outter});
 		currentGameBoardP.push( [] );
 		for( let inner = 0; inner < boardSizeP; inner++ ){
-			var newSquare = $( '<div>', {class: 'square'} );
+			var newSquare = $( '<div>', {class: 'square', 'column': inner} );
 			newRow.append(newSquare);
 			currentGameBoardP[outter].push(newSquare);
 		}
