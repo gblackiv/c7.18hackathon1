@@ -1,9 +1,8 @@
-function switchPlayer(currentPlayerP){
-	if( currentPlayerP === player1 ){
-		currentPlayerP = player2;
+function switchPlayer(){
+	if( currentPlayer === player1 ){
+		currentPlayer = player2;
 	}
 	else{
-		currentPlayerP = player1;
+		currentPlayer = player1;
 	}
-	return currentPlayerP;
 }
