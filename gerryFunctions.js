@@ -23,3 +23,6 @@ function switchPlayer(currentPlayerP){
 	}
 	return currentPlayerP;
 }
+function startGameClickHandler(){
+	$('body').on( 'click', '.submitButton', startGame.bind( boardSize, currentGameBoard ) );
+}
