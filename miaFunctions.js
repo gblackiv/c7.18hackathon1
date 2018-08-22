@@ -1,8 +1,17 @@
-var boardSize = 3; //hardcode for now but will take in user input later
-var currentGameBoard = createBoardSizeArray(boardSize);
+$(document).ready(initializeApp)
+function initializeApp(){
+    firstSubmitClickHandler();
+}
+var boardSize = null; //hardcode for now but will take in user input later
+var currentGameBoard = [];
 
-function createBoardSizeArray(boardSizeInput) {
+var firstClick = null;
 
-return new Array( new Array (boardSizeInput));
+function firstSubmitClickHandler() {
+    $('.gameBoardContainer').on( 'click', '.submitButton', recordFirstSubmitClick );
+}
 
+function recordFirstSubmitClick() {
+boardSize = parseInt( $('.selectBoardSize option:selected').val() );
+createWinConditionMenu( boardSize );
 }

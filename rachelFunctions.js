@@ -1,13 +1,23 @@
+function chooseSquare(event){
+    var clickedSquare = $(event.currentTarget);
+    clickedSquare.text(currentPlayer)
+    var column = clickedSquare.attr("column")
+    var row = clickedSquare.parent().attr("row")
+    clickedSquare.off("click");
+    checkWinCondition([Number(row), Number(column)]);
+    switchPlayer();
+}
 
 
+var winCounter = 2
 
-function checkWinCondition(positionP, currentplayerP) {
-    for (var directionIndex = 0; directionIndex < directionArray.length - 2; directionIndex += 2) {
+function checkWinCondition(positionP) {
+    for (var directionIndex = 0; directionIndex < directionArray.length - 1; directionIndex += 2) {
         currentCounter = 0;
         checkingInOneDirection(directionIndex, positionP);
         checkingInOneDirection(directionIndex + 1, positionP);
         if (currentCounter === winCounter) {
-            alert(currentplayerP + " won!!!!!");
+            alert(currentPlayer + " won!!!!!");
             return;
         }
     }
@@ -16,23 +26,22 @@ function checkWinCondition(positionP, currentplayerP) {
 }
 
 function checkingInOneDirection(indexP, positionP) {
-    var currentMark = currentGameBoard[positionP[0]][positionP[1]]
+    var currentMark = currentGameBoard[positionP[0]][positionP[1]].text()
     var newPosition = positionP.map((item, index) => { return item + directionArray[indexP][index] })
 
     newPosition = newPosition.filter(num => { return -1 < num && num < boardSize })
-    console.log(newPosition)
 
     if (newPosition.length !== 2) {
         console.log("Position is off board!")
         return;
     }
     console.log("Position is fine!")
-    var newPositionMark = currentGameBoard[newPosition[0]][newPosition[1]]
+    var newPositionMark = currentGameBoard[newPosition[0]][newPosition[1]].text()
     if (currentMark === newPositionMark) {
         currentCounter++
+        console.log(currentCounter)
         return checkingInOneDirection(indexP, newPosition)
     }
-    console.log(currentCounter)
 }
 
 
@@ -40,9 +49,10 @@ function checkingInOneDirection(indexP, positionP) {
 function checkDrawGame() {
     var isBoardFull = true;
     for (var boardIndex = 0; boardIndex < currentGameBoard.length; boardIndex++) {
-        currentGameBoard[boardIndex] = currentGameBoard[boardIndex].filter(num => num);
-        if (currentGameBoard[boardIndex].length !== 3) {
-            isBoardFull = false;
+        for (var squareIndex = 0; squareIndex < currentGameBoard.length; squareIndex++){
+            if(!currentGameBoard[boardIndex][squareIndex].text()){
+                isBoardFull = false;
+            }
         }
     }
     if (isBoardFull) {
