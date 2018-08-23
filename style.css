@@ -48,14 +48,17 @@ h2 {
 .winningOptionSpan {
     font-style: bold;
 }
+#gutter{
+    margin-left: 33.33vw;
+    margin-right: 33.33vw;
+    margin-top: 7vh;
+    height: 60%;
+}
 
 .gameBoardContainer {
     display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 7vh;
-    width: 33.33%;
-    height: 60%;
+    width: 100%;
+    height: 100%;
     min-width: 300px;
     background-color: white;
     border-radius: 10px;
