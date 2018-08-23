@@ -1,6 +1,8 @@
 function chooseSquare(event){
+    var clickedSquareText = $(event.currentTarget).find('.centerText');
+    clickedSquareText.text(currentPlayer.mark);
+    clickedSquareText.animate({'opacity':1},500);
     var clickedSquare = $(event.currentTarget);
-    clickedSquare.text(currentPlayer.mark)
     var column = clickedSquare.attr("column")
     var row = clickedSquare.parent().attr("row")
     clickedSquare.off("click");
@@ -15,7 +17,7 @@ function checkWinCondition(positionP) {
         checkingInOneDirection(directionIndex, positionP);
         checkingInOneDirection(directionIndex + 1, positionP);
         if (currentCounter === winCounter) {
-            showResultScreen(false);
+            setTimeout(function(){showResultScreen(false)},700);
             return;
         }
     }

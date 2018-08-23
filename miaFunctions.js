@@ -27,9 +27,6 @@ function choosePlayer2Name() {
     firstSubmitClickHandler();
 }
 
-var boardSize = null;
-var currentGameBoard = [];
-
 function firstSubmitClickHandler() {
     $('.gameBoardContainer').on('click', '.submitButton', recordFirstSubmitClick);
 }
@@ -45,7 +42,6 @@ function displayStats() {
     $("#player2Wins").text(player2.victories);
     $("#draws").text(drawVictories);
 }
-
 
 function resetGame() {
     $('.gameBoardContainer').empty();
