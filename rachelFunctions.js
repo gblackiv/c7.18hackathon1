@@ -1,6 +1,8 @@
-function chooseSquare(event) {
+function chooseSquare(event){
+    var clickedSquareText = $(event.currentTarget).find('.centerText');
+    clickedSquareText.text(currentPlayer.mark);
+    clickedSquareText.animate({'opacity':1},500);
     var clickedSquare = $(event.currentTarget);
-    clickedSquare.text(currentPlayer.mark)
     var column = clickedSquare.attr("column")
     var row = clickedSquare.parent().attr("row")
     clickedSquare.off("click");
@@ -75,6 +77,11 @@ function showResultScreen(isItADraw = false) {
 
 //Firebase
 var ticTacToe = new GenericFBModel('abc123xyz', boardUpdated);
+//click start game  --> ticTacToe.saveState({default data here, add player name});
+//click join game --> become player2, load game board as is, add name to player list
+//click enabled only for current player
+//who am i variable (player 1 or player 2)
+
 
 function boardUpdated(data) {
     console.log('boardUpdated')
@@ -99,13 +106,15 @@ function boardUpdated(data) {
         updateGameBoard();
     }
     if(booleanWinGame%10){
-        showResultScreen(false);
+        setTimeout(function(){showResultScreen(false)},700);
     }
     if(booleanDrawGame%10){
-        showResultScreen(true);
+        setTimeout(function(){showResultScreen(true)},700);
     }
 }
 
+//startButtonFunction - ticTacToe.saveState, player1 data
+//joinButtonFunction - ticTacToe.saveState, player2 data
 
 function saveGameData() {
     ticTacToe.saveState({
@@ -129,31 +138,36 @@ function saveGameData() {
 
 
 function convertToObject() {
+    console.log("convertToObject")
     var objectCurrentGameBoard = {}
     var counter = 0;
     for (var i = 0; i < currentGameBoard.length; i++) {
         for (var j = 0; j < currentGameBoard.length; j++) {
-            if (!currentGameBoard[i][j].text()) {
+            var targetElement = currentGameBoard[i][j].find('.centerText')
+            if (!targetElement.text()) {
                 objectCurrentGameBoard[counter] = "fillerText"
             } else {
-                objectCurrentGameBoard[counter] = currentGameBoard[i][j].text();
+                objectCurrentGameBoard[counter] = targetElement.text();
             }
 
             counter++
         }
     }
+    console.log(objectCurrentGameBoard)
     return objectCurrentGameBoard;
 }
 
 
 function convertToArray(objectCurrentGameBoardP) {
+    console.log("convertToArray")
     var counter = 0;
     for (var i = 0; i < currentGameBoard.length; i++) {
         for (var j = 0; j < currentGameBoard.length; j++) {
+            var targetElement = currentGameBoard[i][j].find('.centerText')
             if (objectCurrentGameBoardP[counter] === "fillerText") {
-                currentGameBoard[i][j].text("");
+                targetElement.text("");
             } else {
-                currentGameBoard[i][j].text(objectCurrentGameBoardP[counter]);
+                targetElement.text(objectCurrentGameBoardP[counter]).animate({'opacity':1},500);
             }
             counter++
         }

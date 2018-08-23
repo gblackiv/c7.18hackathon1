@@ -29,12 +29,4 @@
 			}
 		}
 		this.initialize();
-
-		//this.db.ref("tic-tac-toe-6bc37").set(null)
-
-		// this.db.collection("tic-tac-toe-6bc37").doc("abc123xyz").delete().then(function() {
-		// 	console.log("Document successfully deleted!");
-		// }).catch(function(error) {
-		// 	console.error("Error removing document: ", error);
-		// });
 	}
