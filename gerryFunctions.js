@@ -1,4 +1,5 @@
 function switchPlayer(){
+	console.log("switchPlayer")
 	if( currentPlayer === player1 ){
 		currentPlayer = player2;
 	}
@@ -22,12 +23,14 @@ function startGame(){
 	}
 	$('.preGameScreen').addClass('hidden');
 	squareClickHandler();
+	//var ticTacToe = new GenericFBModel('abc123xyz',boardUpdated);
+	//saveGameData();
 }
 
 function startGameClickHandler(){
 	console.log("startGameClickHandler")
 	setTimeout(function(){$('body').on( 'click', '.submitButton', startGame)}, 200 );
-	
+
 }
 
 function squareClickHandler(){
@@ -35,7 +38,7 @@ function squareClickHandler(){
 }
 function createWinConditionMenu(boardSizeP){
 	console.log("createWinConditionMenu")
-	$('.gameBoardContainer').off('click');
+	$('.gameBoardContainer').unbind('click', recordFirstSubmitClick);
 	for( let createIndex = 3; createIndex <= boardSizeP; createIndex++ ){
 		var newOption = $('<option>', {value: createIndex, text: createIndex});
 		$('.selectWinningCounter').append(newOption);
