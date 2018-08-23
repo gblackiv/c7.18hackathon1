@@ -1,15 +1,15 @@
 function chooseSquare(event){
+    var clickedSquareText = $(event.currentTarget).find('.centerText');
+    clickedSquareText.text(currentPlayer.mark);
+    clickedSquareText.animate({'opacity':1},500);
     var clickedSquare = $(event.currentTarget);
-    clickedSquare.text(currentPlayer)
     var column = clickedSquare.attr("column")
     var row = clickedSquare.parent().attr("row")
     clickedSquare.off("click");
     checkWinCondition([Number(row), Number(column)]);
     switchPlayer();
+    displayStats();
 }
-
-
-var winCounter = 2
 
 function checkWinCondition(positionP) {
     for (var directionIndex = 0; directionIndex < directionArray.length - 1; directionIndex += 2) {
@@ -17,7 +17,7 @@ function checkWinCondition(positionP) {
         checkingInOneDirection(directionIndex, positionP);
         checkingInOneDirection(directionIndex + 1, positionP);
         if (currentCounter === winCounter) {
-            alert(currentPlayer + " won!!!!!");
+            setTimeout(function(){showResultScreen(false)},700);
             return;
         }
     }
@@ -45,7 +45,6 @@ function checkingInOneDirection(indexP, positionP) {
 }
 
 
-
 function checkDrawGame() {
     var isBoardFull = true;
     for (var boardIndex = 0; boardIndex < currentGameBoard.length; boardIndex++) {
@@ -56,6 +55,23 @@ function checkDrawGame() {
         }
     }
     if (isBoardFull) {
-        alert("GAME IS A DRAW");
+        showResultScreen(true);
     }
+}
+
+
+function showResultScreen(isItADraw = false){
+    $('.gameBoardContainer').empty();
+    if (isItADraw){
+        var message = $('<h2>', {'text': 'Game is a draw!'});
+        drawVictories++
+    } else {
+        var message = $('<h2>', {
+            'text': currentPlayer.name + " has won!"});
+        currentPlayer.victories++
+    }
+    $('.gameBoardContainer').append(message);
+    var resetButton = $('<button>', {class: 'resetButton', 'text': 'Play Again'});
+    $('.gameBoardContainer').append(resetButton);
+    $('.resetButton').click(resetGame)
 }

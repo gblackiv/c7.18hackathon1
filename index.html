@@ -2,50 +2,77 @@
 <html>
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>c7.18hackathon1</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="main.js"></script>
-  <script src="gerryFunctions.js"></script>
-  <script src="miaFunctions.js"></script>
-  <script src="rachelFunctions.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>c7.18hackathon1</title>
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="miaStyle.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="main.js"></script>
+    <script src="gerryFunctions.js"></script>
+    <script src="miaFunctions.js"></script>
+    <script src="rachelFunctions.js"></script>
 </head>
 
 <body>
-  <div class="headerContainer">
-    <h1> Tic-<span class="h1Span">Tac</span>-Toe</h1>
-  </div>
-
-  <div class='gameBoardContainer'>
-    <div class="preGameScreen">
-      <div class="selectBoardSizeHeader">Choose a
-          <span class="boardSizeSpan">board size</span>
-          <span class="winningOptionSpan hidden">winning</span>
-          option
-        </div>
-    <br>
-    <select class="selectBoardSize">
-      <option value="3">3 x 3</option>
-      <option value="4">4 x 4</option>
-      <option value="5">5 x 5</option>
-    </select>
-
-    <select class="selectWinningCounter hidden">
-      </select>
-    <br>
-    <button class="submitButton">
-        <span class="submitText">Submit</span>
-        <span class="startGameText hidden">Start Game</span>
-    </button>
-  </div>
-</div>
-
-  <div class="statusContainer">
-    <div class="statusDisplayArea">
+    <div class="headerContainer">
+        <h1>Tic-<span class="h1Span">Tac</span>-Toe</h1>
     </div>
-  </div>
+
+    <div class='gameBoardContainer'>
+        
+        <div class="setPlayerNameScreen">
+            <div class="setNameText">
+                <span class="player1">Player 1</span>
+                <span class="player2 hidden">Player 2</span>
+                please choose your name.
+            </div>
+            <input type="text" class="nameInput">
+            <button class="submitNameButton">
+                <span class="submitText">Submit</span>
+            </button>
+        </div>
+
+        <div class="preGameScreen hidden">
+            <div class="selectBoardSizeHeader">Choose a
+                <span class="boardSizeSpan">board size</span>
+                <span class="winningOptionSpan hidden">winning</span>
+                option
+            </div>
+            <br>
+            <select class="selectBoardSize">
+                <option value="3">3 x 3</option>
+                <option value="4">4 x 4</option>
+                <option value="5">5 x 5</option>
+            </select>
+
+            <select class="selectWinningCounter hidden">
+            </select>
+            <br>
+            <button class="submitButton">
+                <span class="submitText">Submit</span>
+                <span class="startGameText hidden">Start Game</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="statusContainer">
+        <div class="currentMessage">
+            Current Message
+        </div>
+        <div>
+            <div> <span class="player1Name">Player 1</span> 
+                <h2 id='player1Wins'>0</h2>
+            </div>
+            <div> <span class="player2Name">Player 2</span> 
+                <h2 id='player2Wins'>0</h2>
+            </div>
+            <div> <span class ="drawsClass">Draws </span>
+                <h2 id="draws">0</h2>
+            </div>
+        </div>
+    </div>
 
 
 
