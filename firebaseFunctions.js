@@ -22,10 +22,13 @@ function boardUpdated(data) {
         updateGameBoard();
     }
     if(booleanWinGame%10){
-        setTimeout(function(){showResultScreen(false)},700);
+        setTimeout(function(){showResultScreen(false)},800);
     }
     if(booleanDrawGame%10){
-        setTimeout(function(){showResultScreen(true)},700);
+        setTimeout(function(){showResultScreen(true)},800);
+    }
+    if(booleanResetGame%10){
+        setTimeout(function(){resetGame()},800);
     }
 }
 
@@ -92,4 +95,3 @@ function updateGameBoard() {
         }
     }
 }
-

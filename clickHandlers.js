@@ -33,6 +33,7 @@ function choosePlayer2Name() {
         $('.waitingScreen').addClass('hidden');
         startGame();
         clearInterval(waitTimer);
+        dots = null;
     }}, 1000)
 }
 function firstSubmitClickHandler() {
@@ -50,16 +51,21 @@ function resetGame() {
     currentGameBoard = [];
     booleanWinGame = 10;
     booleanDrawGame = 10;
+    booleanResetGame = 10;
     //call startGame() to create the square
     startGame(false);
     displayStats();
 }
 function chooseSquare(event){
+
     var clickedSquare = $(event.currentTarget);
     var clickedSquareText = $(event.currentTarget).find('.centerText');
     if(whoAmI.mark !== currentPlayer.mark || clickedSquareText.text()) {
+      soundsObj.wrongBloop.play();
         return;
     }
+    soundsObj.bubblePop.play();
+
     clickedSquareText.text(currentPlayer.mark);
     clickedSquareText.animate({'opacity':1},500);
     var column = clickedSquare.attr("column")
