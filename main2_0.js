@@ -13,12 +13,14 @@ var player2 = {
     mark:'O',
     victories: 0
 }
+var tempPlayer2Name = null;
 var currentPlayer = player1;
-var whoAmI = null; 
+var whoAmI = null;
 var drawVictories = 0;
 var winCounter;
 var booleanWinGame = 10;
 var booleanDrawGame = 10;
+var booleanResetGame = 10;
 
 var directionArray = [
     [-1,0], //up
@@ -30,6 +32,10 @@ var directionArray = [
     [-1,-1], //up left
     [1,1], //down right
 ]
+var soundsObj = {bubblePop: new Sound('sounds/bubblePop.mp3'),
+                    cheeringSound: new Sound('sounds/cheeringSound.mp3'),
+                    sadTrumbone: new Sound('sounds/sadTrumbone.mp3'),
+                    wrongBloop: new Sound('sounds/wrongBloop.wav')};
 var ticTacToe;
 
 function initializeApp() {
@@ -37,7 +43,7 @@ function initializeApp() {
     if(isPlayer1Filled){
         $("#player1Start").hide();
     }
-    
+
     $("#player1Start").click(startButtonFunction)
     $("#player2Join").click(joinButtonFunction)
 }
@@ -63,6 +69,8 @@ var dots = window.setInterval(function () {
 
 function showResultScreen(isItADraw = false) {
     $('.gameBoardContainer').empty();
+    $(".statusContainer > div:first-child").text("Congratulations!");
+    switchPlayer();
     if (isItADraw) {
         var message = $('<h2>', { 'text': 'Game is a draw!' });
         drawVictories++
@@ -74,7 +82,8 @@ function showResultScreen(isItADraw = false) {
     $('.gameBoardContainer').append(message);
     var resetButton = $('<button>', { class: 'resetButton', 'text': 'Play Again' });
     $('.gameBoardContainer').append(resetButton);
-    $('.resetButton').click(resetGame)
+    booleanResetGame = 11;
+    $('.resetButton').click(saveGameData)
 }
 function switchPlayer() {
 	if (currentPlayer === player1) {
@@ -194,3 +203,10 @@ function drawLineAnimation(){
 	lineDiv.animate({'max-height': `${linelength}px`}, 1500);
 }
 
+function replacePlayer2Name(){
+    if (currentPlayer.mark === 'O'){
+        player2.name = tempPlayer2Name
+    }
+    saveGameData();
+    $('.square').unbind('mouseenter mouseleave');
+}

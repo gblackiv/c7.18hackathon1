@@ -24,7 +24,8 @@ function choosePlayer1Name() {
     firstSubmitClickHandler();
 }
 function choosePlayer2Name() {
-    player2.name = $('.nameInput').val();
+    tempPlayer2Name = $('.nameInput').val();
+    player2.name = tempPlayer2Name
     $('.player2Name').text(player2.name);
     $(".setPlayerNameScreen").addClass("hidden").css('display', '');
     $('.waitingScreen').removeClass('hidden');
@@ -33,6 +34,7 @@ function choosePlayer2Name() {
         $('.waitingScreen').addClass('hidden');
         startGame();
         clearInterval(waitTimer);
+        dots = null;
     }}, 1000)
 }
 function firstSubmitClickHandler() {
@@ -50,18 +52,22 @@ function resetGame() {
     currentGameBoard = [];
     booleanWinGame = 10;
     booleanDrawGame = 10;
+    booleanResetGame = 10;
     //call startGame() to create the square
     startGame(false);
     displayStats();
 }
 function chooseSquare(event){
-    if(whoAmI.mark !== currentPlayer.mark) {
+    var clickedSquare = $(event.currentTarget);
+    var clickedSquareText = $(event.currentTarget).find('.centerText');
+    if(whoAmI.mark !== currentPlayer.mark || clickedSquareText.text()) {
+      soundsObj.wrongBloop.play();
         return;
     }
-    var clickedSquareText = $(event.currentTarget).find('.centerText');
+    soundsObj.bubblePop.play();
+
     clickedSquareText.text(currentPlayer.mark);
     clickedSquareText.animate({'opacity':1},500);
-    var clickedSquare = $(event.currentTarget);
     var column = clickedSquare.attr("column")
     var row = clickedSquare.parent().attr("row")
     clickedSquare.off("click");
@@ -77,7 +83,8 @@ function startGameClickHandler() {
 
 }
 function squareClickHandler() {
-	$('.square').click(chooseSquare);
+    $('.square').click(chooseSquare);
+    $('.square').hover(replacePlayer2Name);
 }
 function createWinConditionMenu(boardSizeP) {
 	$('.gameBoardContainer').off('click');

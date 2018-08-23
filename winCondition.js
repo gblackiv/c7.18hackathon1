@@ -7,6 +7,7 @@ function checkWinCondition(positionP) {
         if (currentCounter === winCounter) {
             drawLineAnimation();
             booleanWinGame = 11;
+            soundsObj.cheeringSound.play();
             return;
         }
     }
@@ -39,5 +40,6 @@ function checkDrawGame() {
     }
     if (isBoardFull) {
         booleanDrawGame = 11;
+        soundsObj.sadTrumbone.play();
     }
 }
