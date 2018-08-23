@@ -12,11 +12,11 @@ var player2 = {
     victories: 0
 }
 var currentPlayer = player1;
+var whoAmI = null; 
 var drawVictories = 0;
 var winCounter;
 var booleanWinGame = 10;
 var booleanDrawGame = 10;
-
 
 var directionArray = [
     [-1,0], //up

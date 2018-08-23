@@ -53,3 +53,15 @@ function resetGame() {
     startGame(false);
     displayStats();
 }
+
+var dots = window.setInterval(function () {
+    if ($(".waitingScreen").hasClass("hidden")) {
+        return;
+    }
+    var wait = document.getElementById("wait");
+    if (wait.innerHTML.length > 3) {
+        wait.innerHTML = "";
+    } else {
+        wait.innerHTML += "o";
+    }
+}, 700);
