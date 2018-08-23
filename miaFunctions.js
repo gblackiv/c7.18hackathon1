@@ -1,43 +1,72 @@
 $(document).ready(initializeApp)
+var ticTacToe;
 
 function initializeApp() {
-    chooseNameClickHandler();
+    ticTacToe = new GenericFBModel('abc123xyz', boardUpdated);
+    if(isPlayer1Filled){
+        $("#player1Start").hide();
+    }
+    
+    $("#player1Start").click(startButtonFunction)
+    $("#player2Join").click(joinButtonFunction)
 }
 
-function chooseNameClickHandler() {
+function startButtonFunction(){
+    whoAmI = player1;
+    isPlayer1Filled = true;
+    $("#player1Start").hide();
+    $("#player2Join").hide();
+    $(".setPlayerNameScreen").show();
+    $(".player1").show();
     $('.gameBoardContainer').on('click', '.submitNameButton', choosePlayer1Name);
+}
+
+function joinButtonFunction(){
+    whoAmI = player2;
+    $("#player1Start").hide();
+    $("#player2Join").hide();
+    $(".setPlayerNameScreen").show();
+    $(".player2").show();
+    $('.gameBoardContainer').on('click', '.submitNameButton', choosePlayer2Name);
 }
 
 function choosePlayer1Name() {
     $('.gameBoardContainer').off('click');
     player1.name = $('.nameInput').val();
     $('.player1Name').text(player1.name);
-    $('.nameInput').val("");
-    $(".player1").addClass("hidden");
-    $(".player2").removeClass("hidden");
-    $('.gameBoardContainer').on('click', '.submitNameButton', choosePlayer2Name);
+    $(".setPlayerNameScreen").addClass("hidden").css('display', '');
+    $(".preGameScreen").removeClass("hidden");
+    firstSubmitClickHandler();
 }
 
 function choosePlayer2Name() {
     player2.name = $('.nameInput').val();
     $('.player2Name').text(player2.name);
-    $('.nameInput').val("");
-    $(".setPlayerNameScreen").addClass("hidden");
-    $(".preGameScreen").removeClass("hidden");
-    firstSubmitClickHandler();
+    $(".setPlayerNameScreen").addClass("hidden").css('display', '');
+    $('.waitingScreen').removeClass('hidden');
+    ticTacToe.saveState({player2: {name: player2.name}})
+    var waitTimer = setInterval(function(){if(boardSize){
+        $('.waitingScreen').addClass('hidden');
+        startGame();
+        clearInterval(waitTimer);
+    }}, 1000)
 }
 
 function firstSubmitClickHandler() {
+    console.log("firstSubmitClickHandler")
     $('.gameBoardContainer').on('click', '.submitButton', recordFirstSubmitClick);
 }
 
 function recordFirstSubmitClick() {
+    console.log("recordFirstSubmitClick")
     boardSize = parseInt($('.selectBoardSize option:selected').val());
     createWinConditionMenu(boardSize);
 }
 
 function displayStats() {
     $(".statusContainer > div:first-child").text(currentPlayer.name + " goes next.");
+    $('.player2Name').text(player2.name);
+    $('.player1Name').text(player1.name);
     $("#player1Wins").text(player1.victories);
     $("#player2Wins").text(player2.victories);
     $("#draws").text(drawVictories);

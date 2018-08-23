@@ -50,8 +50,8 @@ function startGame(notResetGame = true) {
 	}
 	$('.preGameScreen').addClass('hidden');
 	squareClickHandler();
-	//var ticTacToe = new GenericFBModel('abc123xyz',boardUpdated);
-	//saveGameData();
+    saveGameData();
+    displayStats();
 }
 
 function startGameClickHandler() {

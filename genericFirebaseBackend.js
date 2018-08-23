@@ -20,8 +20,11 @@
 		}
 		this.registerListener = function(){
 			this.db.database().ref(this.boardName).on('value',this.handleDataUpdate.bind(this));
-			this.db.database().ref(this.boardName).remove(); //erases all data at the beginning
+			this.db.database().ref(this.boardName).remove();
 		}
+		// this.eraseData = function(){
+		// 	this.db.database().ref(this.boardName).remove();
+		// }
 		this.handleDataUpdate = function(data){
 			var currentData = JSON.stringify(data.val());
 			if(currentData!=this.lastSend){
