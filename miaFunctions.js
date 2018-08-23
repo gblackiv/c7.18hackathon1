@@ -1,11 +1,30 @@
 $(document).ready(initializeApp)
 
 function initializeApp() {
-    chooseNameClickHandler();
+    if(isPlayer1Filled){
+        $("#player1Start").hide();
+    }
+    $("#player1Start").click(startButtonFunction)
+    $("#player2Join").click(joinButtonFunction)
 }
 
-function chooseNameClickHandler() {
+function startButtonFunction(){
+    whoAmI = player1;
+    isPlayer1Filled = true;
+    $("#player1Start").hide();
+    $("#player2Join").hide();
+    $(".setPlayerNameScreen").show();
+    $(".player1").show();
     $('.gameBoardContainer').on('click', '.submitNameButton', choosePlayer1Name);
+}
+
+function joinButtonFunction(){
+    whoAmI = player2;
+    $("#player1Start").hide();
+    $("#player2Join").hide();
+    $(".setPlayerNameScreen").show();
+    $(".player2").show();
+    $('.gameBoardContainer').on('click', '.submitNameButton', choosePlayer2Name);
 }
 
 function choosePlayer1Name() {
@@ -13,25 +32,26 @@ function choosePlayer1Name() {
     player1.name = $('.nameInput').val();
     $('.player1Name').text(player1.name);
     $('.nameInput').val("");
-    $(".player1").addClass("hidden");
-    $(".player2").removeClass("hidden");
-    $('.gameBoardContainer').on('click', '.submitNameButton', choosePlayer2Name);
+    $(".setPlayerNameScreen").addClass("hidden").css('display', '');
+    $(".preGameScreen").removeClass("hidden");
+    firstSubmitClickHandler();
 }
 
 function choosePlayer2Name() {
     player2.name = $('.nameInput').val();
     $('.player2Name').text(player2.name);
     $('.nameInput').val("");
-    $(".setPlayerNameScreen").addClass("hidden");
+    $(".setPlayerNameScreen").addClass("hidden").css('display', '');
     $(".preGameScreen").removeClass("hidden");
-    firstSubmitClickHandler();
 }
 
 function firstSubmitClickHandler() {
+    console.log("firstSubmitClickHandler")
     $('.gameBoardContainer').on('click', '.submitButton', recordFirstSubmitClick);
 }
 
 function recordFirstSubmitClick() {
+    console.log("recordFirstSubmitClick")
     boardSize = parseInt($('.selectBoardSize option:selected').val());
     createWinConditionMenu(boardSize);
 }
