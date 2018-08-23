@@ -1,3 +1,4 @@
+
 function switchPlayer() {
 	if (currentPlayer === player1) {
 		currentPlayer = player2;
@@ -49,6 +50,8 @@ function startGame(notResetGame = true) {
 	}
 	$('.preGameScreen').addClass('hidden');
 	squareClickHandler();
+	//var ticTacToe = new GenericFBModel('abc123xyz',boardUpdated);
+	//saveGameData();
 }
 
 function startGameClickHandler() {
