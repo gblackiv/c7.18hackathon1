@@ -19,7 +19,8 @@ function checkWinCondition(positionP) {
         checkingInOneDirection(directionIndex, positionP);
         checkingInOneDirection(directionIndex + 1, positionP);
         if (currentCounter === winCounter) {
-            setTimeout(function(){showResultScreen(false)},700);
+            drawLineAnimation();
+            setTimeout(function(){showResultScreen(false)},2000);
             return;
         }
     }

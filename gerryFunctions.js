@@ -103,42 +103,59 @@ function drawLineAnimation(){
 			}
 		}
 	}	
-	debugger;
+
 	//sorts array
 	for( let outter = 0; outter < lineDrawArray.length; outter++ ){
-		for( let inner = 0; inner < lineDrawArray.lenght; inner++ ){
+		for( let inner = 0; inner < lineDrawArray.length - 1; inner++ ){
 			if( lineDrawArray[inner][0] > lineDrawArray[inner + 1][0] ){
 				var temp = lineDrawArray.splice(inner, 1);
-				lineDrawArray.splice(inner + 1, 0 ,temp);
-				console.log('current Temp:',temp);
-				console.log('current line arr:',lineDrawArray);
+				lineDrawArray.splice(inner + 1, 0 ,temp[0]);
 				outter = 0;
 			}
 		}
 	}
-
-
+	for( let outter = 0; outter < lineDrawArray.length; outter++ ){
+		for( let inner = 0; inner < lineDrawArray.length - 1; inner++ ){
+			if( lineDrawArray[inner][1] > lineDrawArray[inner + 1][1] ){
+				var temp = lineDrawArray.splice(inner, 1);
+				lineDrawArray.splice(inner + 1, 0 ,temp[0]);
+				outter = 0;
+			}
+		}
+	}
+	var linelength = currentGameBoard[0][0].width() * winCounter;
+	if(lineDrawArray[0][0] === lineDrawArray[1][0] ){
+		var lineRotation = -90;
+	}
+	else if(lineDrawArray[0][0] < lineDrawArray[1][0] && lineDrawArray[0][1] < lineDrawArray[1][1]){
+		var lineRotation = -45;
+		linelength*=1.5;
+	}
+	else if(lineDrawArray[0][0] > lineDrawArray[1][0] && lineDrawArray[0][1] < lineDrawArray[1][1]){
+		var lineRotation = -135;
+		linelength*=1.5;
+	}
+	else if(lineDrawArray[0][1] === lineDrawArray[1][1]){
+		var lineRotation = 0;
+	}
 
 	var xStart = ($('.gameBoardContainer').width() / boardSize) / 2;
 	var yStart = ($('.gameBoardContainer').height() / boardSize) / 2;
-	console.log(xStart);
 
 	squareHeightAndWidth = {left: currentGameBoard[1][1].offset().left - currentGameBoard[0][0].offset().left,
 							top: currentGameBoard[1][1].offset().top - currentGameBoard[0][0].offset().top};
 	var midHeightAndWidth = {left: squareHeightAndWidth.left / 2, top: squareHeightAndWidth.top / 2};
-	var linelength = currentGameBoard[0][0].width() * winCounter;
-	console.log(linelength);
-	var configObj = { css:{
-		height: 100+'%',
-		width: 1+'vw',
-		position: 'absolute',
-		left: xStart + (lineDrawArray[0][1] * (xStart * 2)),
-		top: yStart + (lineDrawArray[0][0] * (yStart * 2)),
-		'max-height': 0,
-		'background-color': 'firebrick',
-		'class': 'drawnLine',
-		'z-index': 10
-		}
+	var configObj = {'class': 'drawnLine', css:{
+											height: 100+'%',
+											width: 0.5+'vw',
+											position: 'absolute',
+											transform: `rotate(${lineRotation}deg)`,
+											left: xStart + (lineDrawArray[0][1] * (xStart * 2)),
+											top: yStart + (lineDrawArray[0][0] * (yStart * 2)),
+											'max-height': 0,
+											'background-color': 'lightgrey',
+											'z-index': 10
+											}
 	}
 	var lineDiv = $('<div>', configObj);
 	$('.gameBoardContainer').append(lineDiv);
