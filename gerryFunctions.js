@@ -13,7 +13,8 @@ function startGame(notResetGame = true) {
 		winCounter = (parseInt($('.selectWinningCounter option:selected').val())) - 1;
 	}
 	var cssSize = 93 / boardSize;
-	var cssTextSize = 59.6/ boardSize;
+	// var cssTextSize = 59.6 / boardSize;
+	var cssTextSize = 47.58/ boardSize;
 	var cssMargin = 7 / (boardSize + 1);
 	for (let outter = 0; outter < boardSize; outter++) {
 		var newRow = $('<div>', {
@@ -36,7 +37,11 @@ function startGame(notResetGame = true) {
 					'margin-left': cssMargin + '%',
 					color: "white"
 				}
-			});
+			})
+			var newCenterText = $('<div>', {
+				class: 'centerText',
+			})
+			newSquare.append(newCenterText);
 			newRow.append(newSquare);
 			currentGameBoard[outter].push(newSquare);
 		}
