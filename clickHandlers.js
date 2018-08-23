@@ -56,6 +56,7 @@ function resetGame() {
 }
 function chooseSquare(event){
     if(whoAmI.mark !== currentPlayer.mark) {
+        soundsObj.wrongBloop.play();
         return;
     }
     soundsObj.bubblePop.play();

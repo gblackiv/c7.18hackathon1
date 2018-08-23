@@ -9,7 +9,7 @@ class Sound{
 	}
 	play(){
 		this.sound.play();
-		console.log(src, 'sound is playing');
+		console.log(this.src, 'sound is playing');
 	}
 	stop(){
 		this.sound.pause();

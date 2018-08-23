@@ -32,7 +32,8 @@ var directionArray = [
 ]
 var soundsObj = {bubblePop: new Sound('sounds/bubblePop.mp3'),
                     cheeringSound: new Sound('sounds/cheeringSound.mp3'),
-                    sadTrumbone: new Sound('sounds/sadTrumbone.mp3')};
+                    sadTrumbone: new Sound('sounds/sadTrumbone.mp3'),
+                    wrongBloop: new Sound('sounds/wrongBloop.wav')};
 var ticTacToe;
 
 function initializeApp() {
