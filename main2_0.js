@@ -13,6 +13,7 @@ var player2 = {
     mark:'O',
     victories: 0
 }
+var tempPlayer2Name = null;
 var currentPlayer = player1;
 var whoAmI = null;
 var drawVictories = 0;
@@ -136,4 +137,12 @@ function startGame(notResetGame = true) {
 	squareClickHandler();
     saveGameData();
     displayStats();
+}
+
+function replacePlayer2Name(){
+    if (currentPlayer.mark === 'O'){
+        player2.name = tempPlayer2Name
+    }
+    saveGameData();
+    $('.square').unbind('mouseenter mouseleave');
 }
