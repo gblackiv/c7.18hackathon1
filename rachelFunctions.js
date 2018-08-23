@@ -10,6 +10,7 @@ function chooseSquare(event){
 }
 
 function checkWinCondition(positionP) {
+
     for (var directionIndex = 0; directionIndex < directionArray.length - 1; directionIndex += 2) {
         currentCounter = 0;
         checkingInOneDirection(directionIndex, positionP);
@@ -26,7 +27,6 @@ function checkWinCondition(positionP) {
 function checkingInOneDirection(indexP, positionP) {
     var currentMark = currentGameBoard[positionP[0]][positionP[1]].text()
     var newPosition = positionP.map((item, index) => { return item + directionArray[indexP][index] })
-
     newPosition = newPosition.filter(num => { return -1 < num && num < boardSize })
 
     if (newPosition.length !== 2) {
@@ -36,6 +36,9 @@ function checkingInOneDirection(indexP, positionP) {
     console.log("Position is fine!")
     var newPositionMark = currentGameBoard[newPosition[0]][newPosition[1]].text()
     if (currentMark === newPositionMark) {
+            lineDrawArray.push( [ positionP[0], positionP[1] ] );
+            lineDrawArray.push( [ newPosition[0], newPosition[1] ] );
+        
         currentCounter++
         console.log(currentCounter)
         return checkingInOneDirection(indexP, newPosition)
@@ -55,6 +58,7 @@ function checkDrawGame() {
     if (isBoardFull) {
         showResultScreen(true);
     }
+    lineDrawArray.splice(0, lineDrawArray.length);
 }
 
 

@@ -11,6 +11,7 @@ var player2 = {
 var currentPlayer = player1;
 var drawVictories = 0;
 var winCounter;
+var lineDrawArray = [];
 
 
 var directionArray = [

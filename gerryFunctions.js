@@ -54,3 +54,44 @@ function createWinConditionMenu(boardSizeP){
 // function handleStatusBar( message ){
 // 	$('')
 // }
+
+function drawLineAnimation(){
+
+	lineDrawArray;
+	var outter = 0;
+	while( lineDrawArray.length > winCounter + 1){
+		for( let inner = outter + 1; inner < lineDrawArray.length; inner++){
+			if( lineDrawArray[outter][0] === lineDrawArray[inner][0] && 
+					lineDrawArray[outter][1] === lineDrawArray[inner][1] ){
+						lineDrawArray.splice( inner, 1);
+						outter = 0;
+					}
+		}
+		outter++;
+	}
+	var lineLength;
+	if( winCounter === 3 ){
+
+	}
+	else if( winCounter === 4 ){
+
+	}
+	else{
+
+	}
+	var configObj = { css:{
+		height: 100+'%',
+		width: 1+'vw',
+		position: 'absolute',
+		left: '50%',
+		top: '50%',
+		transform: 'translate(-50%, -50%)',
+		'max-height': 0,
+		'background-color': 'firebrick',
+		'class': 'drawnLine'
+		}
+	}
+	var lineDiv = $('<div>', configObj);
+	$('body').append(lineDiv);
+	lineDiv.animate({'max-height': 200+'px'}, 1500);
+}

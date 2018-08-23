@@ -137,7 +137,6 @@ body {
   .row {
     position: relative;
     display: inline-block;
-
     width: 100%;
     height: 31%;
   }
@@ -158,4 +157,4 @@ body {
   .pink {
     background-color: pink;
   }
-
+ 
