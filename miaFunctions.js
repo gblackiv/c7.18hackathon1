@@ -27,9 +27,6 @@ function choosePlayer2Name() {
     firstSubmitClickHandler();
 }
 
-var boardSize = null;
-var currentGameBoard = [];
-
 function firstSubmitClickHandler() {
     $('.gameBoardContainer').on('click', '.submitButton', recordFirstSubmitClick);
 }
@@ -46,11 +43,12 @@ function displayStats() {
     $("#draws").text(drawVictories);
 }
 
-
 function resetGame() {
     $('.gameBoardContainer').empty();
     //do not clear boardSize for the moment because we want to keep the selection of boardSize the same
     currentGameBoard = [];
+    booleanWinGame = 10;
+    booleanDrawGame = 10;
     //call startGame() to create the square
     startGame(false);
     displayStats();

@@ -1,3 +1,6 @@
+var boardSize = null;
+var currentGameBoard = [];
+
 var player1 = {
     name: 'Player 1',
     mark:'X',
@@ -11,6 +14,8 @@ var player2 = {
 var currentPlayer = player1;
 var drawVictories = 0;
 var winCounter;
+var booleanWinGame = 10;
+var booleanDrawGame = 10;
 
 
 var directionArray = [

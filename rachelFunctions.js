@@ -1,9 +1,8 @@
-function chooseSquare(event) {
-    // thisPlayer !== currentPlayer{
-    //     return;
-    // }
+function chooseSquare(event){
+    var clickedSquareText = $(event.currentTarget).find('.centerText');
+    clickedSquareText.text(currentPlayer.mark);
+    clickedSquareText.animate({'opacity':1},500);
     var clickedSquare = $(event.currentTarget);
-    clickedSquare.text(currentPlayer.mark)
     var column = clickedSquare.attr("column")
     var row = clickedSquare.parent().attr("row")
     clickedSquare.off("click");
@@ -19,8 +18,7 @@ function checkWinCondition(positionP) {
         checkingInOneDirection(directionIndex, positionP);
         checkingInOneDirection(directionIndex + 1, positionP);
         if (currentCounter === winCounter) {
-            booleanWinGame = 1;
-            //showResultScreen(false);
+            booleanWinGame = 11;
             return;
         }
     }
@@ -55,8 +53,7 @@ function checkDrawGame() {
         }
     }
     if (isBoardFull) {
-        booleanDrawGame = 1;
-        //showResultScreen(true);
+        booleanDrawGame = 11;
     }
 }
 
@@ -78,22 +75,25 @@ function showResultScreen(isItADraw = false) {
 }
 
 
-//Firebase multiplayer
-
-var booleanWinGame = 0;
-var booleanDrawGame = 0;
-
+//Firebase
 var ticTacToe = new GenericFBModel('abc123xyz', boardUpdated);
+//click start game  --> ticTacToe.saveState({default data here, add player name});
+//click join game --> become player2, load game board as is, add name to player list
+//click enabled only for current player
+//who am i variable (player 1 or player 2)
+
 
 function boardUpdated(data) {
     console.log('boardUpdated')
+    if(!data){return;} //if there's nothing in data, don't update board
+
     player1.name = data.player1.name;
     player1.mark = data.player1.mark;
     player1.victories = data.player1.victories;
     player2.name = data.player2.name;
     player2.mark = data.player2.mark;
     player2.victories = data.player2.victories;
-    if (data.currentPlayer.name === 'Player 1') {
+    if (data.currentPlayer.mark === 'X') {
         currentPlayer = player1;
     } else {
         currentPlayer = player2;
@@ -101,19 +101,20 @@ function boardUpdated(data) {
     booleanWinGame = data.booleanWinGame;
     booleanDrawGame = data.booleanDrawGame
     drawVictories = data.drawVictories;
-    //check win conditions
     if (currentGameBoard.length) {
         convertToArray(data.currentGameBoard);
         updateGameBoard();
     }
-    if(booleanWinGame){
-        showResultScreen(false);
+    if(booleanWinGame%10){
+        setTimeout(function(){showResultScreen(false)},700);
     }
-    if(booleanDrawGame){
-        showResultScreen(true);
+    if(booleanDrawGame%10){
+        setTimeout(function(){showResultScreen(true)},700);
     }
 }
 
+//startButtonFunction - ticTacToe.saveState, player1 data
+//joinButtonFunction - ticTacToe.saveState, player2 data
 
 function saveGameData() {
     ticTacToe.saveState({
@@ -137,30 +138,36 @@ function saveGameData() {
 
 
 function convertToObject() {
+    console.log("convertToObject")
     var objectCurrentGameBoard = {}
     var counter = 0;
     for (var i = 0; i < currentGameBoard.length; i++) {
         for (var j = 0; j < currentGameBoard.length; j++) {
-            if (!currentGameBoard[i][j].text()) {
+            var targetElement = currentGameBoard[i][j].find('.centerText')
+            if (!targetElement.text()) {
                 objectCurrentGameBoard[counter] = "fillerText"
             } else {
-                objectCurrentGameBoard[counter] = currentGameBoard[i][j].text();
+                objectCurrentGameBoard[counter] = targetElement.text();
             }
 
             counter++
         }
     }
+    console.log(objectCurrentGameBoard)
     return objectCurrentGameBoard;
 }
 
+
 function convertToArray(objectCurrentGameBoardP) {
+    console.log("convertToArray")
     var counter = 0;
     for (var i = 0; i < currentGameBoard.length; i++) {
         for (var j = 0; j < currentGameBoard.length; j++) {
+            var targetElement = currentGameBoard[i][j].find('.centerText')
             if (objectCurrentGameBoardP[counter] === "fillerText") {
-                currentGameBoard[i][j].text("");
+                targetElement.text("");
             } else {
-                currentGameBoard[i][j].text(objectCurrentGameBoardP[counter]);
+                targetElement.text(objectCurrentGameBoardP[counter]).animate({'opacity':1},500);
             }
             counter++
         }
