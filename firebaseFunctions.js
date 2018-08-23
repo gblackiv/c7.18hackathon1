@@ -22,10 +22,10 @@ function boardUpdated(data) {
         updateGameBoard();
     }
     if(booleanWinGame%10){
-        setTimeout(function(){showResultScreen(false)},700);
+        setTimeout(function(){showResultScreen(false)},2000);
     }
     if(booleanDrawGame%10){
-        setTimeout(function(){showResultScreen(true)},700);
+        setTimeout(function(){showResultScreen(true)},2000);
     }
 }
 
