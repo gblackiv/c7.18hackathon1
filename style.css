@@ -156,5 +156,10 @@ body {
   }
   .pink {
     background-color: pink;
+
   }
- 
+  .drawnLine{
+    transform-origin: 100% 0%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+  }
