@@ -9,6 +9,7 @@ function switchPlayer(){
 
 //returns the currentGameBoard, so when called, you must assign to the global variable gameBoard variable
 function startGame(notResetGame = true){
+	displayStats();
 	if(notResetGame){
 		winCounter = (parseInt($('.selectWinningCounter option:selected').val()))-1;
 	}
