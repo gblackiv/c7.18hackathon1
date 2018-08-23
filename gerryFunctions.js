@@ -1,25 +1,42 @@
-function switchPlayer(){
-	if( currentPlayer === player1 ){
+function switchPlayer() {
+	if (currentPlayer === player1) {
 		currentPlayer = player2;
-	}
-	else{
+	} else {
 		currentPlayer = player1;
 	}
 }
 
 //returns the currentGameBoard, so when called, you must assign to the global variable gameBoard variable
-function startGame(notResetGame = true){
-	if(notResetGame){
-		winCounter = (parseInt($('.selectWinningCounter option:selected').val()))-1;
+function startGame(notResetGame = true) {
+	displayStats();
+	if (notResetGame) {
+		winCounter = (parseInt($('.selectWinningCounter option:selected').val())) - 1;
 	}
-		var cssSize = 100 / boardSize;
-		var cssTextSize = 55 / boardSize ;
-	for( let outter = 0; outter < boardSize; outter++ ){
-		var newRow = $('<div>', {class: 'row', 'row': outter, css: {'height': cssSize+'%' }});
-		currentGameBoard.push( [] );
+	var cssSize = 93 / boardSize;
+	var cssTextSize = 59.6/ boardSize;
+	var cssMargin = 7 / (boardSize + 1);
+	for (let outter = 0; outter < boardSize; outter++) {
+		var newRow = $('<div>', {
+			class: 'row',
+			'row': outter,
+			css: {
+				'height': cssSize + '%'
+			}
+		});
+		currentGameBoard.push([]);
 
-		for( let inner = 0; inner < boardSize; inner++ ){
-			var newSquare = $( '<div>', {class: 'square', 'column': inner , css: {'width': cssSize+'%','font-size': cssTextSize+'vh' }} );
+		for (let inner = 0; inner < boardSize; inner++) {
+			var newSquare = $('<div>', {
+				class: 'square',
+				'column': inner,
+				css: {
+					'width': cssSize + '%',
+					'font-size': cssTextSize + 'vh',
+					'margin-top': cssMargin + '%',
+					'margin-left': cssMargin + '%',
+					color: "white"
+				}
+			});
 			newRow.append(newSquare);
 			currentGameBoard[outter].push(newSquare);
 		}
@@ -29,27 +46,34 @@ function startGame(notResetGame = true){
 	squareClickHandler();
 }
 
-function startGameClickHandler(){
-	setTimeout(function(){$('body').on( 'click', '.submitButton', startGame)}, 200 );
-	
+function startGameClickHandler() {
+	setTimeout(function () {
+		$('body').on('click', '.submitButton', startGame)
+	}, 200);
+
 }
 
-function squareClickHandler(){
+function squareClickHandler() {
 	$('.square').click(chooseSquare);
 }
-function createWinConditionMenu(boardSizeP){
+
+function createWinConditionMenu(boardSizeP) {
 	$('.gameBoardContainer').off('click');
-	for( let createIndex = 3; createIndex <= boardSizeP; createIndex++ ){
-		var newOption = $('<option>', {value: createIndex, text: createIndex});
+	for (let createIndex = 3; createIndex <= boardSizeP; createIndex++) {
+		var newOption = $('<option>', {
+			value: createIndex,
+			text: createIndex
+		});
 		$('.selectWinningCounter').append(newOption);
 	}
 	$('span.submitText').addClass('hidden');
 	$('span.startGameText').removeClass('hidden');
 	$('.selectWinningCounter').removeClass('hidden');
-	$('span.boardSizeSpan').addClass( 'hidden' );
-	$('span.winningOptionSpan').removeClass( 'hidden' );
-	$('.selectBoardSize').addClass( 'hidden' );
+	$('span.boardSizeSpan').addClass('hidden');
+	$('span.winningOptionSpan').removeClass('hidden');
+	$('.selectBoardSize').addClass('hidden');
 	startGameClickHandler();
+
 }
 // function handleStatusBar( message ){
 // 	$('')
@@ -96,3 +120,4 @@ function drawLineAnimation(){
 	// currentGameBoard[lineDrawArray[lineDrawArray.length - 1][0]][lineDrawArray[lineDrawArray.length-1][1]].append(lineDiv);
 	lineDiv.animate({'max-height': lineLength+'px'}, 1500);
 }
+

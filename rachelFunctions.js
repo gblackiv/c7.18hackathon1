@@ -75,4 +75,5 @@ function showResultScreen(isItADraw = false){
     // var resetButton = $('<button>', {class: 'resetButton', 'text': 'Play Again'});
     // $('.gameBoardContainer').append(resetButton);
     // $('.resetButton').click(resetGame)
+
 }
