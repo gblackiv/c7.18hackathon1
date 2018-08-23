@@ -14,7 +14,7 @@ var player2 = {
     victories: 0
 }
 var currentPlayer = player1;
-var whoAmI = null; 
+var whoAmI = null;
 var drawVictories = 0;
 var winCounter;
 var booleanWinGame = 10;
@@ -37,7 +37,7 @@ function initializeApp() {
     if(isPlayer1Filled){
         $("#player1Start").hide();
     }
-    
+
     $("#player1Start").click(startButtonFunction)
     $("#player2Join").click(joinButtonFunction)
 }
@@ -63,6 +63,8 @@ var dots = window.setInterval(function () {
 
 function showResultScreen(isItADraw = false) {
     $('.gameBoardContainer').empty();
+    $(".statusContainer > div:first-child").text("Congratulations!");
+    switchPlayer();
     if (isItADraw) {
         var message = $('<h2>', { 'text': 'Game is a draw!' });
         drawVictories++
@@ -129,4 +131,3 @@ function startGame(notResetGame = true) {
     saveGameData();
     displayStats();
 }
-
