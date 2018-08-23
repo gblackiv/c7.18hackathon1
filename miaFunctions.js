@@ -53,6 +53,5 @@ function resetGame() {
     currentGameBoard = [];
     //call startGame() to create the square
     startGame(false);
-    //clear statusDisplayArea
     displayStats();
 }

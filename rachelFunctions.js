@@ -64,7 +64,8 @@ function showResultScreen(isItADraw = false){
         var message = $('<h2>', {'text': 'Game is a draw!'});
         drawVictories++
     } else {
-        var message = $('<h2>', {'text': currentPlayer.name + " has won!"});
+        var message = $('<h2>', {
+            'text': currentPlayer.name + " has won!"});
         currentPlayer.victories++
     }
     $('.gameBoardContainer').append(message);
