@@ -58,8 +58,10 @@ function resetGame() {
 }
 function chooseSquare(event){
     if(whoAmI.mark !== currentPlayer.mark) {
+        soundsObj.wrongBloop.play();
         return;
     }
+    soundsObj.bubblePop.play();
     var clickedSquareText = $(event.currentTarget).find('.centerText');
     clickedSquareText.text(currentPlayer.mark);
     clickedSquareText.animate({'opacity':1},500);
