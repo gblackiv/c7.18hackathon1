@@ -1,16 +1,3 @@
-$(document).ready(initializeApp)
-var ticTacToe;
-
-function initializeApp() {
-    ticTacToe = new GenericFBModel('abc123xyz', boardUpdated);
-    if(isPlayer1Filled){
-        $("#player1Start").hide();
-    }
-    
-    $("#player1Start").click(startButtonFunction)
-    $("#player2Join").click(joinButtonFunction)
-}
-
 function startButtonFunction(){
     whoAmI = player1;
     isPlayer1Filled = true;
@@ -20,7 +7,6 @@ function startButtonFunction(){
     $(".player1").show();
     $('.gameBoardContainer').on('click', '.submitNameButton', choosePlayer1Name);
 }
-
 function joinButtonFunction(){
     whoAmI = player2;
     $("#player1Start").hide();
@@ -29,7 +15,6 @@ function joinButtonFunction(){
     $(".player2").show();
     $('.gameBoardContainer').on('click', '.submitNameButton', choosePlayer2Name);
 }
-
 function choosePlayer1Name() {
     $('.gameBoardContainer').off('click');
     player1.name = $('.nameInput').val();
@@ -38,7 +23,6 @@ function choosePlayer1Name() {
     $(".preGameScreen").removeClass("hidden");
     firstSubmitClickHandler();
 }
-
 function choosePlayer2Name() {
     player2.name = $('.nameInput').val();
     $('.player2Name').text(player2.name);
@@ -51,27 +35,15 @@ function choosePlayer2Name() {
         clearInterval(waitTimer);
     }}, 1000)
 }
-
 function firstSubmitClickHandler() {
     console.log("firstSubmitClickHandler")
     $('.gameBoardContainer').on('click', '.submitButton', recordFirstSubmitClick);
 }
-
 function recordFirstSubmitClick() {
     console.log("recordFirstSubmitClick")
     boardSize = parseInt($('.selectBoardSize option:selected').val());
     createWinConditionMenu(boardSize);
 }
-
-function displayStats() {
-    $(".statusContainer > div:first-child").text(currentPlayer.name + " goes next.");
-    $('.player2Name').text(player2.name);
-    $('.player1Name').text(player1.name);
-    $("#player1Wins").text(player1.victories);
-    $("#player2Wins").text(player2.victories);
-    $("#draws").text(drawVictories);
-}
-
 function resetGame() {
     $('.gameBoardContainer').empty();
     //do not clear boardSize for the moment because we want to keep the selection of boardSize the same
@@ -82,15 +54,45 @@ function resetGame() {
     startGame(false);
     displayStats();
 }
-
-var dots = window.setInterval(function () {
-    if ($(".waitingScreen").hasClass("hidden")) {
+function chooseSquare(event){
+    if(whoAmI.mark !== currentPlayer.mark) {
         return;
     }
-    var wait = document.getElementById("wait");
-    if (wait.innerHTML.length > 3) {
-        wait.innerHTML = "";
-    } else {
-        wait.innerHTML += "o";
-    }
-}, 700);
+    var clickedSquareText = $(event.currentTarget).find('.centerText');
+    clickedSquareText.text(currentPlayer.mark);
+    clickedSquareText.animate({'opacity':1},500);
+    var clickedSquare = $(event.currentTarget);
+    var column = clickedSquare.attr("column")
+    var row = clickedSquare.parent().attr("row")
+    clickedSquare.off("click");
+    checkWinCondition([Number(row), Number(column)]);
+    switchPlayer();
+    saveGameData();
+    displayStats();
+}
+function startGameClickHandler() {
+	setTimeout(function () {
+		$('body').on('click', '.submitButton', startGame)
+	}, 200);
+
+}
+function squareClickHandler() {
+	$('.square').click(chooseSquare);
+}
+function createWinConditionMenu(boardSizeP) {
+	$('.gameBoardContainer').off('click');
+	for (let createIndex = 3; createIndex <= boardSizeP; createIndex++) {
+		var newOption = $('<option>', {
+			value: createIndex,
+			text: createIndex
+		});
+		$('.selectWinningCounter').append(newOption);
+	}
+	$('span.submitText').addClass('hidden');
+	$('span.startGameText').removeClass('hidden');
+	$('.selectWinningCounter').removeClass('hidden');
+	$('span.boardSizeSpan').addClass('hidden');
+	$('span.winningOptionSpan').removeClass('hidden');
+	$('.selectBoardSize').addClass('hidden');
+	startGameClickHandler();
+}
