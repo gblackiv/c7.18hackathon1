@@ -26,7 +26,7 @@ function boardUpdated(data) {
     }
     if(booleanDrawGame%10){
         setTimeout(function(){showResultScreen(true)},2000);
-
+    }
     if(booleanResetGame%10){
         setTimeout(function(){resetGame()},2000);
 

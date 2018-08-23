@@ -24,6 +24,7 @@ function checkingInOneDirection(indexP, positionP) {
     }
     var newPositionMark = currentGameBoard[newPosition[0]][newPosition[1]].text()
     if (currentMark === newPositionMark) {
+        
         currentCounter++
         console.log(currentCounter)
         return checkingInOneDirection(indexP, newPosition)

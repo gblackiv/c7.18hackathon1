@@ -21,6 +21,7 @@ var winCounter;
 var booleanWinGame = 10;
 var booleanDrawGame = 10;
 var booleanResetGame = 10;
+var lineDrawArray = [];
 
 var directionArray = [
     [-1,0], //up
