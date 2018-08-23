@@ -1,7 +1,4 @@
 function chooseSquare(event) {
-    // thisPlayer !== currentPlayer{
-    //     return;
-    // }
     var clickedSquare = $(event.currentTarget);
     clickedSquare.text(currentPlayer.mark)
     var column = clickedSquare.attr("column")
@@ -19,8 +16,7 @@ function checkWinCondition(positionP) {
         checkingInOneDirection(directionIndex, positionP);
         checkingInOneDirection(directionIndex + 1, positionP);
         if (currentCounter === winCounter) {
-            booleanWinGame = 1;
-            //showResultScreen(false);
+            booleanWinGame = 11;
             return;
         }
     }
@@ -55,8 +51,7 @@ function checkDrawGame() {
         }
     }
     if (isBoardFull) {
-        booleanDrawGame = 1;
-        //showResultScreen(true);
+        booleanDrawGame = 11;
     }
 }
 
@@ -78,22 +73,20 @@ function showResultScreen(isItADraw = false) {
 }
 
 
-//Firebase multiplayer
-
-var booleanWinGame = 0;
-var booleanDrawGame = 0;
-
+//Firebase
 var ticTacToe = new GenericFBModel('abc123xyz', boardUpdated);
 
 function boardUpdated(data) {
     console.log('boardUpdated')
+    if(!data){return;} //if there's nothing in data, don't update board
+
     player1.name = data.player1.name;
     player1.mark = data.player1.mark;
     player1.victories = data.player1.victories;
     player2.name = data.player2.name;
     player2.mark = data.player2.mark;
     player2.victories = data.player2.victories;
-    if (data.currentPlayer.name === 'Player 1') {
+    if (data.currentPlayer.mark === 'X') {
         currentPlayer = player1;
     } else {
         currentPlayer = player2;
@@ -101,15 +94,14 @@ function boardUpdated(data) {
     booleanWinGame = data.booleanWinGame;
     booleanDrawGame = data.booleanDrawGame
     drawVictories = data.drawVictories;
-    //check win conditions
     if (currentGameBoard.length) {
         convertToArray(data.currentGameBoard);
         updateGameBoard();
     }
-    if(booleanWinGame){
+    if(booleanWinGame%10){
         showResultScreen(false);
     }
-    if(booleanDrawGame){
+    if(booleanDrawGame%10){
         showResultScreen(true);
     }
 }
@@ -152,6 +144,7 @@ function convertToObject() {
     }
     return objectCurrentGameBoard;
 }
+
 
 function convertToArray(objectCurrentGameBoardP) {
     var counter = 0;

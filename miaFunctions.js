@@ -51,6 +51,8 @@ function resetGame() {
     $('.gameBoardContainer').empty();
     //do not clear boardSize for the moment because we want to keep the selection of boardSize the same
     currentGameBoard = [];
+    booleanWinGame = 10;
+    booleanDrawGame = 10;
     //call startGame() to create the square
     startGame(false);
     displayStats();

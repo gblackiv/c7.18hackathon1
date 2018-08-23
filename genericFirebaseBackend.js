@@ -20,6 +20,7 @@
 		}
 		this.registerListener = function(){
 			this.db.database().ref(this.boardName).on('value',this.handleDataUpdate.bind(this));
+			this.db.database().ref(this.boardName).remove(); //erases all data at the beginning
 		}
 		this.handleDataUpdate = function(data){
 			var currentData = JSON.stringify(data.val());
@@ -29,4 +30,11 @@
 		}
 		this.initialize();
 
+		//this.db.ref("tic-tac-toe-6bc37").set(null)
+
+		// this.db.collection("tic-tac-toe-6bc37").doc("abc123xyz").delete().then(function() {
+		// 	console.log("Document successfully deleted!");
+		// }).catch(function(error) {
+		// 	console.error("Error removing document: ", error);
+		// });
 	}
