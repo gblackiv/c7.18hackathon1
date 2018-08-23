@@ -1,9 +1,12 @@
 $(document).ready(initializeApp)
+var ticTacToe;
 
 function initializeApp() {
+    ticTacToe = new GenericFBModel('abc123xyz', boardUpdated);
     if(isPlayer1Filled){
         $("#player1Start").hide();
     }
+    
     $("#player1Start").click(startButtonFunction)
     $("#player2Join").click(joinButtonFunction)
 }
@@ -42,7 +45,8 @@ function choosePlayer2Name() {
     $('.player2Name').text(player2.name);
     $('.nameInput').val("");
     $(".setPlayerNameScreen").addClass("hidden").css('display', '');
-    $(".preGameScreen").removeClass("hidden");
+    // $('')
+    startGame();
 }
 
 function firstSubmitClickHandler() {

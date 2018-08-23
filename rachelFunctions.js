@@ -76,7 +76,7 @@ function showResultScreen(isItADraw = false) {
 
 
 //Firebase
-var ticTacToe = new GenericFBModel('abc123xyz', boardUpdated);
+//var ticTacToe = new GenericFBModel('abc123xyz', boardUpdated);
 //click start game  --> ticTacToe.saveState({default data here, add player name});
 //click join game --> become player2, load game board as is, add name to player list
 //click enabled only for current player
@@ -101,6 +101,7 @@ function boardUpdated(data) {
     booleanWinGame = data.booleanWinGame;
     booleanDrawGame = data.booleanDrawGame
     drawVictories = data.drawVictories;
+    boardSize =  data.boardSize;
     if (currentGameBoard.length) {
         convertToArray(data.currentGameBoard);
         updateGameBoard();
@@ -133,6 +134,7 @@ function saveGameData() {
         currentGameBoard: convertToObject(),
         booleanWinGame: booleanWinGame,
         booleanDrawGame: booleanDrawGame,
+        boardSize: boardSize
     });
 }
 
