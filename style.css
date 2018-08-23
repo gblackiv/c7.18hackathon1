@@ -95,7 +95,7 @@ option {
     font-size: 50%;
 }
 
-button {
+button.submitNameButton, button.submitButton {
     display: inline-block;
     position: relative;
     left: 35%;
@@ -186,4 +186,17 @@ button:hover {
     left: 50%;
     top: 57%;
     transform: translate(-50%, -50%);
+}
+
+#player1Start, #player2Join{
+    display: inline-block;
+    position: relative;
+    left: 12%;
+    top: 30%;
+    width: 30%;
+    height: 10vh;
+    border-radius: 5px;
+    background-color: pink;
+    margin: 30vh 0 0 2vw;
+    font-size: 3vh;
 }
