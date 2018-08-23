@@ -24,7 +24,8 @@ function choosePlayer1Name() {
     firstSubmitClickHandler();
 }
 function choosePlayer2Name() {
-    player2.name = $('.nameInput').val();
+    tempPlayer2Name = $('.nameInput').val();
+    player2.name = tempPlayer2Name
     $('.player2Name').text(player2.name);
     $(".setPlayerNameScreen").addClass("hidden").css('display', '');
     $('.waitingScreen').removeClass('hidden');
@@ -57,7 +58,6 @@ function resetGame() {
     displayStats();
 }
 function chooseSquare(event){
-
     var clickedSquare = $(event.currentTarget);
     var clickedSquareText = $(event.currentTarget).find('.centerText');
     if(whoAmI.mark !== currentPlayer.mark || clickedSquareText.text()) {
@@ -83,7 +83,8 @@ function startGameClickHandler() {
 
 }
 function squareClickHandler() {
-	$('.square').click(chooseSquare);
+    $('.square').click(chooseSquare);
+    $('.square').hover(replacePlayer2Name);
 }
 function createWinConditionMenu(boardSizeP) {
 	$('.gameBoardContainer').off('click');
