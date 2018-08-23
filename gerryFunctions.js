@@ -94,21 +94,29 @@ function drawLineAnimation(){
 	// 				}
 	// 	}
 	// 	outter++;
-	// }
-	for( let outter = 0; outter < lineDrawArray.length; outter++ ){
-		for( let inner = 0; inner < lineDrawArray.lenght; inner++ ){
-			if( lineDrawArray[outter][0] > lineDrawArray[outter + 1][0] ){
-				var temp = lineDrawArray.splice()
-			}
-		}
-	}
+	//}
+		//removes duplicates
 	for( let outter = 0; outter < lineDrawArray.length - 1; outter++ ){
 		for( let inner = 1; inner < lineDrawArray.length; inner++ ){
 			if(lineDrawArray[outter][0] === lineDrawArray[inner][0] && lineDrawArray[outter][1] === lineDrawArray[inner][1] ){
 				lineDrawArray.splice(inner, 1);
 			}
 		}
+	}	
+	debugger;
+	//sorts array
+	for( let outter = 0; outter < lineDrawArray.length; outter++ ){
+		for( let inner = 0; inner < lineDrawArray.lenght; inner++ ){
+			if( lineDrawArray[inner][0] > lineDrawArray[inner + 1][0] ){
+				var temp = lineDrawArray.splice(inner, 1);
+				lineDrawArray.splice(inner + 1, 0 ,temp);
+				console.log('current Temp:',temp);
+				console.log('current line arr:',lineDrawArray);
+				outter = 0;
+			}
+		}
 	}
+
 
 
 	var xStart = ($('.gameBoardContainer').width() / boardSize) / 2;
