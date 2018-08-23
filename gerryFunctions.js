@@ -75,10 +75,8 @@ function createWinConditionMenu(boardSizeP) {
 	startGameClickHandler();
 
 }
-// function handleStatusBar( message ){
-// 	$('')
-// }
-var squareOffset;
+
+
 var squareHeightAndWidth
 function drawLineAnimation(){
 	var outter = 0;
@@ -96,19 +94,19 @@ function drawLineAnimation(){
 	// var midSquareHeight = Math.abs((currentGameBoard[lineDrawArray[0][0]][lineDrawArray[0][1]].position().top - currentGameBoard[lineDrawArray[lineDrawArray.length - 1][0]][lineDrawArray[lineDrawArray.length - 1][1]].offset().top)/2);
 	//var midSquareHeight = currentGameBoard[lineDrawArray[0][0]].css('height');
 	
-	squareOffset = currentGameBoard[0][0].offset();
+
 	squareHeightAndWidth = {left: currentGameBoard[1][1].offset().left - currentGameBoard[0][0].offset().left,
 							top: currentGameBoard[1][1].offset().top - currentGameBoard[0][0].offset().top};
-	var lineCenter = {left: squareHeightAndWidth.left * boardSize / 2,
-						right: squareHeightAndWidth.top * boardSize / 2};
-	
-	var lineLength = (currentGameBoard[1][1].offset().left - currentGameBoard[0][0].offset().left  ) * boardSize;
+
+	// var lineLength = (currentGameBoard[2][2].offset().left - currentGameBoard[1][1].offset().left  ) * boardSize;
+	var linelength = currentGameBoard[0][0].width() * 2.5;
+	console.log(linelength);
 	var configObj = { css:{
 		height: 100+'%',
 		width: 1+'vw',
 		position: 'absolute',
-		left: '50%',
-		top: '50%',
+		left: '200px',
+		top: '200px',
 		'max-height': 0,
 		'background-color': 'firebrick',
 		'class': 'drawnLine',
@@ -116,8 +114,8 @@ function drawLineAnimation(){
 		}
 	}
 	var lineDiv = $('<div>', configObj);
-	$('.gameBoardContainer').append(lineDiv);
-	// currentGameBoard[lineDrawArray[lineDrawArray.length - 1][0]][lineDrawArray[lineDrawArray.length-1][1]].append(lineDiv);
-	lineDiv.animate({'max-height': lineLength+'px'}, 1500);
+//	$('.gameBoardContainer').append(lineDiv);
+	currentGameBoard[lineDrawArray[lineDrawArray.length - 1][0]][lineDrawArray[lineDrawArray.length-1][1]].append(lineDiv);
+	lineDiv.animate({'max-height': `${linelength}px`}, 1500);
 }
 
