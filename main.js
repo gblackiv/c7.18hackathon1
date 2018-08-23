@@ -1,6 +1,6 @@
 var boardSize = null;
 var currentGameBoard = [];
-
+var isPlayer1Filled = false;
 var player1 = {
     name: 'Player 1',
     mark:'X',
