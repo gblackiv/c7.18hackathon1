@@ -33,6 +33,7 @@ function choosePlayer2Name() {
         $('.waitingScreen').addClass('hidden');
         startGame();
         clearInterval(waitTimer);
+        dots = null;
     }}, 1000)
 }
 function firstSubmitClickHandler() {
@@ -50,6 +51,7 @@ function resetGame() {
     currentGameBoard = [];
     booleanWinGame = 10;
     booleanDrawGame = 10;
+    booleanResetGame = 10;
     //call startGame() to create the square
     startGame(false);
     displayStats();

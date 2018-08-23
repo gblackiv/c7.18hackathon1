@@ -19,6 +19,7 @@ var drawVictories = 0;
 var winCounter;
 var booleanWinGame = 10;
 var booleanDrawGame = 10;
+var booleanResetGame = 10;
 
 var directionArray = [
     [-1,0], //up
@@ -76,7 +77,8 @@ function showResultScreen(isItADraw = false) {
     $('.gameBoardContainer').append(message);
     var resetButton = $('<button>', { class: 'resetButton', 'text': 'Play Again' });
     $('.gameBoardContainer').append(resetButton);
-    $('.resetButton').click(resetGame)
+    booleanResetGame = 11;
+    $('.resetButton').click(saveGameData)
 }
 function switchPlayer() {
 	if (currentPlayer === player1) {
