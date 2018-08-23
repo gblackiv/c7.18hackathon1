@@ -34,7 +34,6 @@ function choosePlayer1Name() {
     $('.gameBoardContainer').off('click');
     player1.name = $('.nameInput').val();
     $('.player1Name').text(player1.name);
-    $('.nameInput').val("");
     $(".setPlayerNameScreen").addClass("hidden").css('display', '');
     $(".preGameScreen").removeClass("hidden");
     firstSubmitClickHandler();
@@ -43,10 +42,14 @@ function choosePlayer1Name() {
 function choosePlayer2Name() {
     player2.name = $('.nameInput').val();
     $('.player2Name').text(player2.name);
-    $('.nameInput').val("");
     $(".setPlayerNameScreen").addClass("hidden").css('display', '');
-    // $('')
-    startGame();
+    $('.waitingScreen').removeClass('hidden');
+    ticTacToe.saveState({player2: {name: player2.name}})
+    var waitTimer = setInterval(function(){if(boardSize){
+        $('.waitingScreen').addClass('hidden');
+        startGame();
+        clearInterval(waitTimer);
+    }}, 1000)
 }
 
 function firstSubmitClickHandler() {
@@ -62,6 +65,8 @@ function recordFirstSubmitClick() {
 
 function displayStats() {
     $(".statusContainer > div:first-child").text(currentPlayer.name + " goes next.");
+    $('.player2Name').text(player2.name);
+    $('.player1Name').text(player1.name);
     $("#player1Wins").text(player1.victories);
     $("#player2Wins").text(player2.victories);
     $("#draws").text(drawVictories);
