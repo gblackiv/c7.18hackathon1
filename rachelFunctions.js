@@ -1,4 +1,7 @@
 function chooseSquare(event){
+    if(whoAmI.mark !== currentPlayer.mark) {
+        return;
+    }
     var clickedSquareText = $(event.currentTarget).find('.centerText');
     clickedSquareText.text(currentPlayer.mark);
     clickedSquareText.animate({'opacity':1},500);
