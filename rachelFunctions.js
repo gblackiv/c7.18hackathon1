@@ -10,10 +10,10 @@ function chooseSquare(event) {
     checkWinCondition([Number(row), Number(column)]);
     switchPlayer();
     saveGameData();
+    displayStats();
 }
 
 function checkWinCondition(positionP) {
-    var winCounter = (boardSize - 1);
     for (var directionIndex = 0; directionIndex < directionArray.length - 1; directionIndex += 2) {
         currentCounter = 0;
         checkingInOneDirection(directionIndex, positionP);
@@ -55,7 +55,7 @@ function checkDrawGame() {
         }
     }
     if (isBoardFull) {
-        booleanDrawnGame = 1;
+        booleanDrawGame = 1;
         //showResultScreen(true);
     }
 }
@@ -67,7 +67,8 @@ function showResultScreen(isItADraw = false) {
         var message = $('<h2>', { 'text': 'Game is a draw!' });
         drawVictories++
     } else {
-        var message = $('<h2>', { 'text': currentPlayer.name + " has won!" });
+        var message = $('<h2>', {
+            'text': currentPlayer.name + " has won!"});
         currentPlayer.victories++
     }
     $('.gameBoardContainer').append(message);
@@ -80,7 +81,7 @@ function showResultScreen(isItADraw = false) {
 //Firebase multiplayer
 
 var booleanWinGame = 0;
-var booleanDrawnGame = 0;
+var booleanDrawGame = 0;
 
 var ticTacToe = new GenericFBModel('abc123xyz', boardUpdated);
 
@@ -98,7 +99,7 @@ function boardUpdated(data) {
         currentPlayer = player2;
     }
     booleanWinGame = data.booleanWinGame;
-    booleanDrawnGame = data.booleanDrawnGame
+    booleanDrawGame = data.booleanDrawGame
     drawVictories = data.drawVictories;
     //check win conditions
     if (currentGameBoard.length) {
@@ -106,9 +107,9 @@ function boardUpdated(data) {
         updateGameBoard();
     }
     if(booleanWinGame){
-
+        showResultScreen(false);
     }
-    if(booleanDrawnGame){
+    if(booleanDrawGame){
         showResultScreen(true);
     }
 }
@@ -130,7 +131,7 @@ function saveGameData() {
         drawVictories: drawVictories,
         currentGameBoard: convertToObject(),
         booleanWinGame: booleanWinGame,
-        booleanDrawnGame: booleanDrawnGame,
+        booleanDrawGame: booleanDrawGame,
     });
 }
 
