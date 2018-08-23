@@ -55,13 +55,13 @@ function resetGame() {
     displayStats();
 }
 function chooseSquare(event){
-    if(whoAmI.mark !== currentPlayer.mark) {
+    var clickedSquare = $(event.currentTarget);
+    var clickedSquareText = $(event.currentTarget).find('.centerText');
+    if(whoAmI.mark !== currentPlayer.mark || clickedSquareText.text()) {
         return;
     }
-    var clickedSquareText = $(event.currentTarget).find('.centerText');
     clickedSquareText.text(currentPlayer.mark);
     clickedSquareText.animate({'opacity':1},500);
-    var clickedSquare = $(event.currentTarget);
     var column = clickedSquare.attr("column")
     var row = clickedSquare.parent().attr("row")
     clickedSquare.off("click");
