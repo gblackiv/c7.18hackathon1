@@ -2,6 +2,7 @@
 function checkWinCondition(positionP) {
     for (var directionIndex = 0; directionIndex < directionArray.length - 1; directionIndex += 2) {
         currentCounter = 0;
+        lineDrawArray.splice(0, lineDrawArray.length);
         checkingInOneDirection(directionIndex, positionP);
         checkingInOneDirection(directionIndex + 1, positionP);
         if (currentCounter === winCounter) {
@@ -24,7 +25,9 @@ function checkingInOneDirection(indexP, positionP) {
     }
     var newPositionMark = currentGameBoard[newPosition[0]][newPosition[1]].text()
     if (currentMark === newPositionMark) {
-        
+        lineDrawArray.push( [ positionP[0], positionP[1] ] );
+        lineDrawArray.push( newPosition );
+
         currentCounter++
         console.log(currentCounter)
         return checkingInOneDirection(indexP, newPosition)
