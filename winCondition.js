@@ -6,7 +6,6 @@ function checkWinCondition(positionP) {
         checkingInOneDirection(directionIndex, positionP);
         checkingInOneDirection(directionIndex + 1, positionP);
         if (currentCounter === winCounter) {
-            drawLineAnimation();
             booleanWinGame = 11;
             soundsObj.cheeringSound.play();
             return;

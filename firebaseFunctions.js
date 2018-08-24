@@ -1,7 +1,6 @@
 function boardUpdated(data) {
     console.log('boardUpdated')
     if(!data){return;} //if there's nothing in data, don't update board
-
     player1.name = data.player1.name;
     player1.mark = data.player1.mark;
     player1.victories = data.player1.victories;
@@ -18,14 +17,15 @@ function boardUpdated(data) {
     drawVictories = data.drawVictories;
     boardSize =  data.boardSize;
     if (currentGameBoard.length) {
+        // lineDrawArray = convertWinningObjToArray(data.lineDrawArray);
         convertToArray(data.currentGameBoard);
         updateGameBoard();
     }
     if(booleanWinGame%10){
-        setTimeout(function(){showResultScreen(false)},2000);
+        setTimeout(function(){showResultScreen(false)},2500);
     }
     if(booleanDrawGame%10){
-        setTimeout(function(){showResultScreen(true)},2000);
+        setTimeout(function(){showResultScreen(true)},2500);
     }
     if(booleanResetGame%10){
         setTimeout(function(){resetGame()},2000);
@@ -45,12 +45,14 @@ function saveGameData() {
             mark: player2.mark,
             victories: player2.victories
         },
+
         currentPlayer: currentPlayer,
         drawVictories: drawVictories,
         currentGameBoard: convertToObject(),
         booleanWinGame: booleanWinGame,
         booleanDrawGame: booleanDrawGame,
-        boardSize: boardSize
+        boardSize: boardSize,
+
     });
 }
 function convertToObject() {
