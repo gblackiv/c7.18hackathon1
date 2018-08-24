@@ -30,6 +30,9 @@ function boardUpdated(data) {
     if(booleanResetGame%10){
         setTimeout(function(){resetGame()},800);
     }
+    if(currentPlayer.mark === 'O'){
+        winCounter: data.winCounter
+    }
 }
 
 function saveGameData() {
@@ -49,7 +52,8 @@ function saveGameData() {
         currentGameBoard: convertToObject(),
         booleanWinGame: booleanWinGame,
         booleanDrawGame: booleanDrawGame,
-        boardSize: boardSize
+        boardSize: boardSize,
+        winCounter: winCounter
     });
 }
 function convertToObject() {
