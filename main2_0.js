@@ -17,7 +17,7 @@ var tempPlayer2Name = null;
 var currentPlayer = player1;
 var whoAmI = null;
 var drawVictories = 0;
-var winCounter;
+var winCounter = 2;
 var booleanWinGame = 10;
 var booleanDrawGame = 10;
 var booleanResetGame = 10;
@@ -96,7 +96,11 @@ function switchPlayer() {
 function startGame(notResetGame = true) {
 	displayStats();
 	if (notResetGame) {
-		winCounter = (parseInt($('.selectWinningCounter option:selected').val())) - 1;
+        var tempWinCounter = (parseInt($('.selectWinningCounter option:selected').val())) - 1;
+        if (!isNaN(tempWinCounter)){
+            console.log("winCounter filled")
+            winCounter = tempWinCounter
+        }
 	}
 	var cssSize = 93 / boardSize;
 	// var cssTextSize = 59.6 / boardSize;
