@@ -18,9 +18,9 @@ var currentPlayer = player1;
 var whoAmI = null;
 var drawVictories = 0;
 var winCounter = 2;
-var booleanWinGame = 10;
-var booleanDrawGame = 10;
-var booleanResetGame = 10;
+var booleanWinGame = false;
+var booleanDrawGame = false;
+var booleanResetGame = false;
 
 var directionArray = [
     [-1,0], //up
