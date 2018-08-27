@@ -21,13 +21,13 @@ function boardUpdated(data) {
         convertToArray(data.currentGameBoard);
         updateGameBoard();
     }
-    if(booleanWinGame%10){
+    if(booleanWinGame){
         setTimeout(function(){showResultScreen(false)},800);
     }
-    if(booleanDrawGame%10){
+    if(booleanDrawGame){
         setTimeout(function(){showResultScreen(true)},800);
     }
-    if(booleanResetGame%10){
+    if(booleanResetGame){
         setTimeout(function(){resetGame()},800);
     }
     if(currentPlayer.mark === 'O'){
